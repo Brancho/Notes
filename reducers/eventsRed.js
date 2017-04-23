@@ -1,10 +1,12 @@
 function eventsRed(state = {}, action) {
   switch (action.type) {
     case 'ADD_EVENT':
-      return {
-        ...state,
-        arr: [...state.arr, action.newItem]
-      };
+      console.log(action);
+      return [...state, {
+        name : action.event.eventName,
+        description : action.event.eventDescription,
+        img : action.event.eventImgURL
+      }];
     default:
       return state;
   }

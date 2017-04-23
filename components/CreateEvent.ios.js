@@ -27,18 +27,19 @@ class CreateEvent extends Component {
   }
 
 
-  //
-  //  createEvent() {
-  //    console.log(this.state);
-  //    debugger;
-  //   return {
-  //     type: 'ADD_EVENT',
-  //     event: this.state
-  //   }
-  // }
+
+
 
 
   render() {
+
+    const createEvent = (e) => {
+      e.preventDefault();
+      this.props.addEvent(this.state);
+      // dispatch('ADD_EVENT', this.state);
+      Actions.EventCreated();
+    };
+
     const window = Dimensions.get('window');
     return (
       <View style={{flex: 1, paddingTop: 60}}>
@@ -71,7 +72,7 @@ class CreateEvent extends Component {
 
         </View>
 
-        <Text onPress={Actions.EventCreated} style={styles.h1}>Create an event!</Text>
+        <Text onPress={createEvent} style={styles.h1}>Create an event!</Text>
         </View>
     );
   }
