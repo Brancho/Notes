@@ -4,3 +4,12 @@ export function addEvent (event) {
     event
   }
 }
+
+// export function activeEvent (id) {
+//   return {
+//     type: 'SET_ACTIVE_EVENT',
+//     id
+//   }
+// }
+
+

@@ -10,8 +10,6 @@ import {
   Dimensions
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 
 
 
@@ -23,20 +21,13 @@ class CreateEvent extends Component {
       eventDescription: '',
       eventImgURL: 'http://www.clipartkid.com/images/656/black-and-white-square-clip-art-8lblvX-clipart.jpg'
     };
-
   }
-
-
-
-
-
 
   render() {
 
     const createEvent = (e) => {
       e.preventDefault();
       this.props.addEvent(this.state);
-      // dispatch('ADD_EVENT', this.state);
       Actions.EventCreated();
     };
 
@@ -77,31 +68,6 @@ class CreateEvent extends Component {
     );
   }
 }
-//
-// const mapStateToProps = (state) => {
-//   return {
-//     event : this.state
-//   }
-// }
-//
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onSubmit: () => {
-//       dispatch(this.createEvent());
-//     }
-//   }
-// }
-//
-//
-//
-//
-// const VisibleTodoList = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(CreateEvent)
-
-
 
 export default CreateEvent;
 

@@ -1,12 +1,11 @@
 import { createStore, compose } from 'redux';
 import rootReducer from './reducers/index';
-import events from './data/events';
+import data from './data/events';
 
 const defaultState =  {
-  events
+  data
 };
 
-console.log(defaultState);
 
 const store = createStore(rootReducer, defaultState);
 
