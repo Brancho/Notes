@@ -1,19 +1,28 @@
+import uuidV4 from 'uuid/v4';
+import _ from 'underscore';
+
 function eventsRed(state = {}, action) {
-  console.log(action);
   switch (action.type) {
-    case 'ADD_EVENT':
+    case 'ADD_NOTE':
+      const id = !!action.note.noteID ? action.note.noteID : uuidV4();
       return {
         ...state,
-        events: [...state.events, {
-          name: action.event.eventName,
-          description: action.event.eventDescription,
-          img: action.event.eventImgURL
-        }
-      ]
-  }
+        notes: [{
+          title: action.note.title,
+          description: action.note.description,
+          noteID: id
+        }, ...state.notes
+        ]
+      };
 
-    // case 'SET_ACTIVE_EVENT':
-    //   return {...state, activeEvent : action.id}
+    case 'EDIT_NOTE':
+      const otherNotes =  _.reject(state.notes, function(n){
+        return n.noteID == action.note.noteID
+      });
+
+      return {
+        notes: [action.note, ...otherNotes]
+      };
 
     default:
       return state;

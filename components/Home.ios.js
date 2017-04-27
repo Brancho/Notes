@@ -1,63 +1,61 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  Image,
   ListView,
   Dimensions,
   TouchableWithoutFeedback,
-  ListViewDataSource
+  ListViewDataSource,
+  TouchableHighlight
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
+
+
+
 
 
 export default class Home extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
     this.state = {
-      eventName: '',
-      eventDescription: '',
-      eventImgURL: 'http://www.clipartkid.com/images/656/black-and-white-square-clip-art-8lblvX-clipart.jpg'
+      title: '',
+      description: ''
     };
-
-
   }
 
   render() {
     const window = Dimensions.get('window');
-    const events = this.ds.cloneWithRows(this.props.data.events);
-    const rowCount = events.getRowCount();
-
-    const getTheRightEvent = (id) => {
-      Actions.EventPage({id: id});
+    const note = this.ds.cloneWithRows(this.props.data.notes);
+    const rowCount = note.getRowCount();
+    const getTheRightNote = (id) => {
+      console.log(id);
+      Actions.EditNote({id: id});
     };
-
+    console.log(this.props.data.notes)
     return (
+
       <View style={styles.container}>
-        <Text style={styles.title}>Events list</Text>
-        <ListView
-            style={styles.listCont}
-            dataSource={events}
-            renderRow={(event, sectionID, rowID) =>
-
-              <TouchableWithoutFeedback onPress={getTheRightEvent.bind(this, rowID)} >
-              <View style={styles.viewContainer}>
-                <Image source={{uri : event.img}} style={styles.imgStyle}/>
-                <View style={{justifyContent:'flex-start', width: window.width - 120}}><Text style={{fontSize: 20}}>{event.name}</Text>
-                  <Text>{event.description}</Text>
-                </View>
-
+        <ListView style={styles.listCont} dataSource={note} renderRow={(note, sectionID, rowID) =>
+          <TouchableWithoutFeedback onPress={getTheRightNote.bind(this, note.noteID)} >
+            <View style={styles.viewContainer}>
+              <View style={styles.textCont}><Text style={styles.noteTitle}>{note.title}</Text>
+                <Text style={styles.noteTitle}>{note.noteID}</Text>
+                <Text style={styles.noteDesc}>{note.description}</Text>
               </View>
-              </TouchableWithoutFeedback>
-            }
-            renderSeparator={(sectionId, rowId) => rowId != rowCount - 1 ? <View key={rowId} style={styles.separator} /> : null}
-        />
-        <Text onPress={Actions.CreateEvent} style={styles.h1}>Create an event</Text>
+
+            </View>
+          </TouchableWithoutFeedback>
+        } renderSeparator={(sectionId, rowId) => rowId != rowCount - 1 ? <View key={rowId} style={styles.separator}/> : null}/>
+
+        <View style={styles.buttonCont}>
+          <TouchableHighlight onPress={Actions.EditNote} style={styles.button}>
+            <Text>New</Text>
+            {/*<Icon name="note" size={30} style={styles.icon}/>*/}
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -79,30 +77,44 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 20
   },
-  title: {
-    fontSize: 25,
-    textAlign: 'center',
-    paddingBottom: 20,
-    paddingTop: 20,
-    backgroundColor: 'lightgray'
+  separator: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#8E8E8E'
   },
-  h1: {
-    fontSize: 25,
-    textAlign: 'center',
-    paddingBottom: 20,
-    paddingTop: 20,
-    backgroundColor: '#337CA0',
+  noteTitle: {
+    fontSize: 16,
+    // fontFamily: 'Raleway',
+    fontWeight: "600",
+    marginBottom: 5
+  },
+  noteDesc: {
+    // fontFamily: 'Raleway',
+    fontSize: 13,
+    fontWeight: "400"
+  },
+  textCont: {
+    justifyContent: 'flex-start',
+    width: window.width - 120
+  },
+  buttonCont: {
+    position: 'absolute',
+    flexDirection: 'row',
+    right: 20,
+    bottom: 20
+  },
+  button: {
+    padding: 14,
+    borderRadius: 100,
+    backgroundColor: 'red',
+    width: 60,
+    height: 60,
+    shadowColor: 'black',
+    shadowRadius: 10,
+    shadowOffset: {width: 10, height: 10}
+  },
+  icon: {
     color: 'white'
-  },
-        separator: {
-        flex: 1,
-        height: 1,
-        backgroundColor: '#8E8E8E',
-      },
-  imgStyle: {
-    width: 70,
-    height: 70,
-    marginRight: 10
   }
 });
 

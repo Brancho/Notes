@@ -1,22 +1,28 @@
+import uuidV4 from 'uuid/v4';
+
 const data = {
-  events: [
-    {
-      name: 'React Meetup',
-      description: 'Join us if you\'d like to learn more or if you have your own ReactJs experience to share that others can benefit from.',
-      img: "https://facebook.github.io/react/img/logo_og.png"
-    },
-    {
-      name: 'Javascript Meetup',
-      description: 'Join us if you\'d like to learn more or if you have your own ReactJs experience to share that others can benefit from.',
-      img: "https://i.stack.imgur.com/Mmww2.png"
-    },
-    {
-      name: 'Ruby on rails meetup',
-      description: 'Join us if you\'d like to learn more or if you have your own ReactJs experience to share that others can benefit from.',
-      img: "https://pbs.twimg.com/profile_images/691206086955790336/CDMbA57p.png"
-    }
-  ],
-  activeEvent: 0
+  notes: [
+    // {
+    //   name: 'Finish the app styling',
+    //   description: 'Watch tutorial blabla and do blabla and then blablabla',
+    //   noteID: uuidV4()
+    // },
+    // {
+    //   name: 'Shopping list',
+    //   description: 'Rye bread, baking powder, bananas, tomatos, yogurt, chia seeds, sparkling water',
+    //   noteID: uuidV4()
+    // },
+    // {
+    //   name: 'Cool recipes',
+    //   description: 'njaam.rs',
+    //   noteID: uuidV4()
+    // },
+    // {
+    //   name: 'Call electrician',
+    //   description: 'Ivan - 0631234567',
+    //   noteID: uuidV4()
+    // }
+  ]
 };
 
 export default data;

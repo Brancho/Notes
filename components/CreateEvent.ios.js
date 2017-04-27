@@ -27,14 +27,13 @@ class CreateEvent extends Component {
 
     const createEvent = (e) => {
       e.preventDefault();
-      this.props.addEvent(this.state);
-      Actions.EventCreated();
+      this.props.addNote(this.state);
+      Actions.Home();
     };
 
     const window = Dimensions.get('window');
     return (
       <View style={{flex: 1, paddingTop: 60}}>
-      <Text style={styles.title}>CreateEvent</Text>
         <View style={styles.container}>
 
         <TextInput

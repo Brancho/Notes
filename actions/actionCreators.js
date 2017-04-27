@@ -1,15 +1,19 @@
-export function addEvent (event) {
+export function addNote(note, noteID) {
   return {
-    type: 'ADD_EVENT',
-    event
+    type: 'ADD_NOTE',
+    note,
+    noteID
   }
 }
 
-// export function activeEvent (id) {
-//   return {
-//     type: 'SET_ACTIVE_EVENT',
-//     id
-//   }
-// }
+export function editNote(note) {
+  return {
+    type: 'EDIT_NOTE',
+    note
+  }
+}
+
+
+
 
 

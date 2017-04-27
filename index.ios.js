@@ -1,46 +1,35 @@
-
-import React, {Component} from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  ScrollView
-} from 'react-native';
-import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
-import { bindActionCreators } from 'redux';
+import React, { Component } from 'react';
+import { AppRegistry } from 'react-native';
+import { Actions, Scene } from 'react-native-router-flux';
 import Home from './components/Home.ios.js'
-import CreateEvent from './components/CreateEvent.ios.js'
-import EventCreated from './components/EventCreated.ios.js'
-import EventPage from './components/EventPage.ios.js'
-import { Provider, connect } from 'react-redux';
+import EditNote from './components/EditNote.ios.js'
+import { Provider } from 'react-redux';
 import store from './store';
 import ConnectedRouter from './app.js';
+import Loading from './components/Loading.ios.js'
 
 
 
 const Scenes = Actions.create(
   <Scene key="root">
-    <Scene key="EventPage" component={EventPage} title="EventPage"/>
-    <Scene key="EventCreated" component={EventCreated} title="EventCreated"/>
-    <Scene key="CreateEvent" component={CreateEvent} title="CreateEvent"/>
-    <Scene key="Home" component={Home} title="Home" initial={true}/>
+    <Scene key="EditNote" component={EditNote} title="New / Edit Note" />
+    <Scene key="Home" component={Home} title="NOTES" />
+    <Scene key="Loading" component={Loading} initial={true}/>
   </Scene>
 );
 
 
-class EventApp extends Component {
+class NotesApp extends Component {
   render() {
     return (
       <Provider store={store}>
-        <ConnectedRouter scenes={Scenes} />
+        <ConnectedRouter scenes={Scenes}/>
       </Provider>
     );
   }
 }
 
 
+export default NotesApp;
 
-export default EventApp;
-
-AppRegistry.registerComponent('AwesomeProject', () => EventApp);
+AppRegistry.registerComponent('AwesomeProject', () => NotesApp);

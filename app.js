@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from './actions/actionCreators';
-import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
+import { Router } from 'react-native-router-flux';
 
 
 function mapStateToProps(state){
