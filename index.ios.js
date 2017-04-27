@@ -11,9 +11,9 @@ import Loading from './components/Loading.ios.js'
 
 
 const Scenes = Actions.create(
-  <Scene key="root">
-    <Scene key="EditNote" component={EditNote} title="New / Edit Note" />
-    <Scene key="Home" component={Home} title="NOTES" />
+  <Scene key="root" hideNavBar={true}>
+    <Scene key="EditNote" component={EditNote} title="EditNote" />
+    <Scene key="Home" component={Home} title="Home" />
     <Scene key="Loading" component={Loading} initial={true}/>
   </Scene>
 );

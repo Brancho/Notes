@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import uuidV4 from 'uuid/v4';
+import Header from './Header.ios.js';
 
 
 class EditNote extends Component {
@@ -38,21 +39,23 @@ class EditNote extends Component {
 
     return (
 
+
       <View style={styles.container}>
-        <Text onPress={addNote}>Save</Text>
-        <TextInput style={styles.noteTitle} placeholder="Title" keyboardType='default' maxLength={38} selectionColor="red" keyboardAppearance="default" value={this.state.title ? this.state.title : ""} onChangeText={(text) => {
+        <Header addNote={addNote.bind(this)} currScreen={this.props.title}/>
+        <View style={styles.inputCont}>
+        <TextInput style={styles.noteTitle} placeholder="Title" keyboardType='default' maxLength={38} selectionColor="#D53833" keyboardAppearance="default" value={this.state.title ? this.state.title : ""} onChangeText={(text) => {
           this.setState({title: text});
         }}/>
         <ScrollView>
           <TextInput style={{
             height: window.height - 100,
-            fontSize: 17
-          }} multiline={true} placeholder="Your note..." keyboardType='default' selectionColor="red" keyboardAppearance="default" value={this.state.description ? this.state.description : ""} onChangeText={(text) => {
+            fontSize: 17,
+            fontFamily: 'Raleway'
+          }} multiline={true} placeholder="Your note..." keyboardType='default' selectionColor="#D53833" keyboardAppearance="default" value={this.state.description ? this.state.description : ""} onChangeText={(text) => {
             this.setState({description: text});
-          }} onContentSizeChange={(event) => {
-            this.setState({height: event.nativeEvent.contentSize.height});
-          }}/>
+          }} />
         </ScrollView>
+          </View>
       </View>
 
     );
@@ -63,14 +66,16 @@ export default EditNote;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 60
+    flex: 1
   },
   noteTitle: {
     height: 40,
     fontSize: 20,
-    fontWeight: '600'
+    fontWeight: '600',
+    fontFamily: 'Raleway'
+  },
+  inputCont: {
+    paddingLeft: 20,
+    paddingRight: 20
   }
 });

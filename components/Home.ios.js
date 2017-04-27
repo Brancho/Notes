@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import Header from './Header.ios.js';
 
 
 
@@ -38,11 +39,11 @@ export default class Home extends Component {
     return (
 
       <View style={styles.container}>
+        <Header currScreen={this.props.title}/>
         <ListView style={styles.listCont} dataSource={note} renderRow={(note, sectionID, rowID) =>
           <TouchableWithoutFeedback onPress={getTheRightNote.bind(this, note.noteID)} >
             <View style={styles.viewContainer}>
               <View style={styles.textCont}><Text style={styles.noteTitle}>{note.title}</Text>
-                <Text style={styles.noteTitle}>{note.noteID}</Text>
                 <Text style={styles.noteDesc}>{note.description}</Text>
               </View>
 
@@ -52,8 +53,7 @@ export default class Home extends Component {
 
         <View style={styles.buttonCont}>
           <TouchableHighlight onPress={Actions.EditNote} style={styles.button}>
-            <Text>New</Text>
-            {/*<Icon name="note" size={30} style={styles.icon}/>*/}
+            <Icon name="note" size={30} style={styles.icon}/>
           </TouchableHighlight>
         </View>
       </View>
@@ -64,8 +64,7 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 60
+    flex: 1
   },
   listCont: {
     paddingLeft: 20,
@@ -83,15 +82,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#8E8E8E'
   },
   noteTitle: {
-    fontSize: 16,
-    // fontFamily: 'Raleway',
+    fontSize: 14,
+    fontFamily: 'Raleway',
     fontWeight: "600",
     marginBottom: 5
   },
   noteDesc: {
-    // fontFamily: 'Raleway',
-    fontSize: 13,
-    fontWeight: "400"
+    fontFamily: 'Raleway',
+    fontSize: 14,
+    fontWeight: "400",
+    color: '#8E8E8E'
   },
   textCont: {
     justifyContent: 'flex-start',
@@ -106,12 +106,13 @@ const styles = StyleSheet.create({
   button: {
     padding: 14,
     borderRadius: 100,
-    backgroundColor: 'red',
+    backgroundColor: '#D53833',
     width: 60,
     height: 60,
     shadowColor: 'black',
-    shadowRadius: 10,
-    shadowOffset: {width: 10, height: 10}
+    shadowRadius: 1,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.3
   },
   icon: {
     color: 'white'
