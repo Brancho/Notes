@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     textAlign: 'center',
-    fontFamily: "Raleway"
+    fontFamily: "Raleway",
+    fontSize: 18
   }
 });

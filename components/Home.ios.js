@@ -14,9 +14,6 @@ import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import Header from './Header.ios.js';
 
 
-
-
-
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -35,12 +32,13 @@ export default class Home extends Component {
       console.log(id);
       Actions.EditNote({id: id});
     };
-    console.log(this.props.data.notes)
+
     return (
 
       <View style={styles.container}>
         <Header currScreen={this.props.title}/>
         <ListView style={styles.listCont} dataSource={note} renderRow={(note, sectionID, rowID) =>
+
           <TouchableWithoutFeedback onPress={getTheRightNote.bind(this, note.noteID)} >
             <View style={styles.viewContainer}>
               <View style={styles.textCont}><Text style={styles.noteTitle}>{note.title}</Text>
@@ -53,7 +51,7 @@ export default class Home extends Component {
 
         <View style={styles.buttonCont}>
           <TouchableHighlight onPress={Actions.EditNote} style={styles.button}>
-            <Icon name="note" size={30} style={styles.icon}/>
+            <Icon name="note" size={25} style={styles.icon}/>
           </TouchableHighlight>
         </View>
       </View>
@@ -79,7 +77,7 @@ const styles = StyleSheet.create({
   separator: {
     flex: 1,
     height: 1,
-    backgroundColor: '#8E8E8E'
+    backgroundColor: '#E4DFE7'
   },
   noteTitle: {
     fontSize: 14,
@@ -104,7 +102,7 @@ const styles = StyleSheet.create({
     bottom: 20
   },
   button: {
-    padding: 14,
+    padding: 17,
     borderRadius: 100,
     backgroundColor: '#D53833',
     width: 60,

@@ -16,12 +16,12 @@ function eventsRed(state = {}, action) {
       };
 
     case 'EDIT_NOTE':
-      const otherNotes =  _.reject(state.notes, function(n){
-        return n.noteID == action.note.noteID
-      });
+      const noteIndex = (state.notes.findIndex(x => x.noteID == action.note.noteID));
+      const notes = state.notes;
+      notes[noteIndex] = action.note;
 
       return {
-        notes: [action.note, ...otherNotes]
+        notes: notes
       };
 
     default:
@@ -30,4 +30,9 @@ function eventsRed(state = {}, action) {
 }
 
 export default eventsRed;
+
+
+
+
+
 

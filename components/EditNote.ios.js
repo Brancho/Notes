@@ -30,7 +30,9 @@ class EditNote extends Component {
   render() {
     const window = Dimensions.get('window');
     const addNote = () => {
-      this.props.id == undefined ? this.props.addNote(this.state) : this.props.editNote(this.state);
+      if(this.state.title && this.state.description != "") {
+        this.props.id == undefined ? this.props.addNote(this.state) : this.props.editNote(this.state);
+      }
       setTimeout(function(){
         Actions.Home();
       },100);
