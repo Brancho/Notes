@@ -13,6 +13,23 @@ export function editNote(note) {
   }
 }
 
+export function deleteNote(note) {
+  return {
+    type: 'DELETE_NOTE',
+    note
+  }
+}
+
+export function pinNote(note) {
+  return {
+    type: 'PIN_NOTE',
+    note
+  }
+}
+
+
+
+
 
 
 

@@ -16,7 +16,6 @@ class EditNote extends Component {
   constructor(props) {
     super(props);
     const note = this.props.data.notes.find((n)=>{ return !!n.noteID && n.noteID ==  this.props.id});
-    console.log(this.props.data.notes);
 
     this.state = {
       title: note ? note.title : "",
@@ -30,7 +29,7 @@ class EditNote extends Component {
   render() {
     const window = Dimensions.get('window');
     const addNote = () => {
-      if(this.state.title && this.state.description != "") {
+      if(this.state.title || this.state.description != "") {
         this.props.id == undefined ? this.props.addNote(this.state) : this.props.editNote(this.state);
       }
       setTimeout(function(){
@@ -45,7 +44,7 @@ class EditNote extends Component {
       <View style={styles.container}>
         <Header addNote={addNote.bind(this)} currScreen={this.props.title}/>
         <View style={styles.inputCont}>
-        <TextInput style={styles.noteTitle} placeholder="Title" keyboardType='default' maxLength={38} selectionColor="#D53833" keyboardAppearance="default" value={this.state.title ? this.state.title : ""} onChangeText={(text) => {
+        <TextInput style={styles.noteTitle} placeholder="Title" keyboardType='default' maxLength={38} selectionColor="#B74138" keyboardAppearance="default" value={this.state.title ? this.state.title : ""} onChangeText={(text) => {
           this.setState({title: text});
         }}/>
         <ScrollView>
@@ -53,7 +52,7 @@ class EditNote extends Component {
             height: window.height - 100,
             fontSize: 17,
             fontFamily: 'Raleway'
-          }} multiline={true} placeholder="Your note..." keyboardType='default' selectionColor="#D53833" keyboardAppearance="default" value={this.state.description ? this.state.description : ""} onChangeText={(text) => {
+          }} multiline={true} placeholder="Your note..." keyboardType='default' selectionColor="#B74138" keyboardAppearance="default" value={this.state.description ? this.state.description : ""} onChangeText={(text) => {
             this.setState({description: text});
           }} />
         </ScrollView>

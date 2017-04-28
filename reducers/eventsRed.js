@@ -24,6 +24,26 @@ function eventsRed(state = {}, action) {
         notes: notes
       };
 
+    case 'DELETE_NOTE':
+       const noteIndexD = (state.notes.findIndex(x => x.noteID == action.note.noteID));
+      console.log(state.notes.length);
+      const notess = [...state.notes.slice(0, noteIndexD),
+                      ...state.notes.slice(noteIndexD + 1)
+                    ];
+
+      return {
+        notes: notess
+      };
+
+    case 'PIN_NOTE':
+      const noteIndexDD = (state.notes.findIndex(x => x.noteID == action.note.noteID));
+      const notesss = [action.note ,...state.notes.slice(0, noteIndexDD),
+        ...state.notes.slice(noteIndexDD + 1)
+      ];
+      return {
+        notes: notesss
+      };
+
     default:
       return state;
   }

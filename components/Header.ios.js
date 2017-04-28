@@ -11,7 +11,7 @@ class Header extends Component {
     return (
       <View style={styles.headCont}>
         {this.props.currScreen == "Home" ? <Text style={styles.title}>NOTES</Text> :
-          <TouchableHighlight style={{flex: 1}} onPress={this.props.addNote}>
+          <TouchableHighlight style={{flex: 1}} onPress={this.props.addNote} underlayColor="white">
             <Icon name="chevron-small-left" size={40} style={styles.icon}/>
           </TouchableHighlight>
         }
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   icon: {
-    color: '#D53833'
+    color: '#B74138'
   },
   title: {
     flex: 1,

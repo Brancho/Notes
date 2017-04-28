@@ -12,17 +12,16 @@ import {
 import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import Header from './Header.ios.js';
+import Swipeout from 'react-native-swipeout';
+
 
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      title: '',
-      description: ''
-    };
   }
+
 
   render() {
     const window = Dimensions.get('window');
@@ -33,13 +32,41 @@ export default class Home extends Component {
       Actions.EditNote({id: id});
     };
 
+    const deleteNote = (note) => {
+      this.props.deleteNote(note);
+      setTimeout(function(){
+        Actions.Loading();
+        Actions.Home();
+      },200);
+
+    };
+    const pinNote = (note) => {
+      this.props.pinNote(note);
+      setTimeout(function(){
+        Actions.Loading();
+        Actions.Home();
+      },200);
+    };
+
+
     return (
 
       <View style={styles.container}>
         <Header currScreen={this.props.title}/>
         <ListView style={styles.listCont} dataSource={note} renderRow={(note, sectionID, rowID) =>
 
-          <TouchableWithoutFeedback onPress={getTheRightNote.bind(this, note.noteID)} >
+          <Swipeout right={[{
+            text: 'DELETE',
+            backgroundColor: '#4F8258',
+            onPress: deleteNote.bind(this, note)
+          },
+            {
+              text: 'PIN ON TOP',
+              backgroundColor: '#3B6982',
+              onPress: pinNote.bind(this, note)
+            }
+            ]} autoClose={true} backgroundColor= 'transparent' >
+          <TouchableWithoutFeedback onPress={getTheRightNote.bind(this, note.noteID, note)} >
             <View style={styles.viewContainer}>
               <View style={styles.textCont}><Text style={styles.noteTitle}>{note.title}</Text>
                 <Text style={styles.noteDesc}>{note.description}</Text>
@@ -47,10 +74,11 @@ export default class Home extends Component {
 
             </View>
           </TouchableWithoutFeedback>
+            </Swipeout>
         } renderSeparator={(sectionId, rowId) => rowId != rowCount - 1 ? <View key={rowId} style={styles.separator}/> : null}/>
 
         <View style={styles.buttonCont}>
-          <TouchableHighlight onPress={Actions.EditNote} style={styles.button}>
+          <TouchableHighlight onPress={Actions.EditNote} style={styles.button} underlayColor="#B74138">
             <Icon name="note" size={25} style={styles.icon}/>
           </TouchableHighlight>
         </View>
@@ -104,7 +132,7 @@ const styles = StyleSheet.create({
   button: {
     padding: 17,
     borderRadius: 100,
-    backgroundColor: '#D53833',
+    backgroundColor: '#B74138',
     width: 60,
     height: 60,
     shadowColor: 'black',
