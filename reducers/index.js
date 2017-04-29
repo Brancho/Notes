@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import eventsRed from './eventsRed';
-import storageReducer from './storageReducer';
+
 
 const rootReducer = combineReducers({
-  data: eventsRed,
-  storageReducer
+  data: eventsRed
 });
 
 export default rootReducer;
+

@@ -6,15 +6,14 @@ import EditNote from './components/EditNote.ios.js'
 import { Provider } from 'react-redux';
 import store from './store';
 import ConnectedRouter from './app.js';
-import Loading from './components/Loading.ios.js'
+
 
 
 
 const Scenes = Actions.create(
   <Scene key="root" hideNavBar={true}>
     <Scene key="EditNote" component={EditNote} title="EditNote" />
-    <Scene key="Home" component={Home} title="Home" />
-    <Scene key="Loading" component={Loading} initial={true}/>
+    <Scene key="Home" component={Home} title="Home" initial={true}/>
   </Scene>
 );
 

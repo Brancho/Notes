@@ -1,6 +1,7 @@
 import uuidV4 from 'uuid/v4';
 import _ from 'underscore';
 
+
 function eventsRed(state = {}, action) {
   switch (action.type) {
     case 'ADD_NOTE':
@@ -48,6 +49,7 @@ function eventsRed(state = {}, action) {
       return state;
   }
 }
+
 
 export default eventsRed;
 

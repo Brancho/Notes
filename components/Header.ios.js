@@ -7,7 +7,6 @@ import { Actions } from 'react-native-router-flux';
 
 class Header extends Component {
   render() {
-    console.log(this.props.currScreen);
     return (
       <View style={styles.headCont}>
         {this.props.currScreen == "Home" ? <Text style={styles.title}>NOTES</Text> :
