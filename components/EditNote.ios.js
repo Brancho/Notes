@@ -10,6 +10,7 @@ import {
 import {Actions} from 'react-native-router-flux';
 import uuidV4 from 'uuid/v4';
 import Header from './Header.ios.js';
+import styles from '../styles/editNoteS';
 
 
 class EditNote extends Component {
@@ -37,7 +38,6 @@ class EditNote extends Component {
 
     return (
 
-
       <View style={styles.container}>
         <Header addNote={addNote.bind(this)} currScreen={this.props.title}/>
         <View style={styles.inputCont}>
@@ -45,11 +45,7 @@ class EditNote extends Component {
           this.setState({title: text});
         }}/>
         <ScrollView>
-          <TextInput style={{
-            height: window.height - 100,
-            fontSize: 17,
-            fontFamily: 'Raleway'
-          }} multiline={true} placeholder="Your note..." keyboardType='default' selectionColor="#B74138" keyboardAppearance="default" value={this.state.description ? this.state.description : ""} onChangeText={(text) => {
+          <TextInput style={{ height: window.height - 100, fontSize: 17, fontFamily: 'Raleway' }} multiline={true} placeholder="Your note..." keyboardType='default' selectionColor="#B74138" keyboardAppearance="default" value={this.state.description ? this.state.description : ""} onChangeText={(text) => {
             this.setState({description: text});
           }} />
         </ScrollView>
@@ -62,18 +58,3 @@ class EditNote extends Component {
 
 export default EditNote;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  noteTitle: {
-    height: 40,
-    fontSize: 20,
-    fontWeight: '600',
-    fontFamily: 'Raleway'
-  },
-  inputCont: {
-    paddingLeft: 20,
-    paddingRight: 20
-  }
-});
