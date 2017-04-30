@@ -66,12 +66,14 @@ export default class Home extends Component {
           <Swipeout right={[{
             text: 'DELETE',
             backgroundColor: '#4F8258',
-            onPress: deleteNote.bind(this, note)
+            onPress: deleteNote.bind(this, note),
+            component: <View style={styles.btnCont} ><Icon name="trash" size={25} style={styles.btnIcon}/><Text style={styles.btnText}>DELETE</Text></View>
           },
             {
-              text: 'PIN ON TOP',
+              text: 'PIN',
               backgroundColor: '#3B6982',
-              onPress: pinNote.bind(this, note)
+              onPress: pinNote.bind(this, note),
+            component: <View style={styles.btnCont} ><Icon name="pin" size={25} style={styles.btnIcon}/><Text style={styles.btnText}>PIN</Text></View>
             }
             ]} autoClose={true} backgroundColor= 'transparent' >
           <TouchableOpacity onPress={getTheRightNote.bind(this, note.noteID, note)} >

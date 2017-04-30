@@ -55,6 +55,21 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: 'white'
+  },
+  btnText: {
+    color: 'white',
+    fontSize: 11,
+    textAlign: 'center'
+  },
+  btnIcon: {
+    color: 'white',
+    alignSelf: 'center',
+    marginBottom: 5
+  },
+  btnCont: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center'
   }
 });
 
