@@ -20,7 +20,7 @@ const load = storage.createLoader(engine);
 
 
 
-engine.save({});
+// engine.save({});
 
 load(store)
   .then((newState) => console.log('Loaded state:', newState))
