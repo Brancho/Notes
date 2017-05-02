@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import eventsRed from './eventsRed';
+import notes from './notes';
 
 
 const rootReducer = combineReducers({
-  data: eventsRed
+  notes
 });
 
 export default rootReducer;

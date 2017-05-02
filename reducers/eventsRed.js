@@ -1,8 +1,7 @@
 import uuidV4 from 'uuid/v4';
-import _ from 'underscore';
 
 
-function eventsRed(state = {}, action) {
+function eventsRed(state = { notes: []}, action) {
   switch (action.type) {
     case 'ADD_NOTE':
       const id = !!action.note.noteID ? action.note.noteID : uuidV4();
@@ -33,7 +32,7 @@ function eventsRed(state = {}, action) {
                     ];
 
       return {
-        notes: notess
+        notes: notes
       };
 
     case 'PIN_NOTE':
@@ -49,6 +48,9 @@ function eventsRed(state = {}, action) {
       return state;
   }
 }
+
+
+
 
 
 export default eventsRed;

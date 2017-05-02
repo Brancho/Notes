@@ -6,7 +6,7 @@ import { Router } from 'react-native-router-flux';
 
 function mapStateToProps(state){
   return {
-    data: state.data
+    notes: state.notes
   }
 }
 

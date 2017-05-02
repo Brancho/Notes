@@ -16,7 +16,7 @@ import styles from '../styles/editNoteS';
 class EditNote extends Component {
   constructor(props) {
     super(props);
-    const note = this.props.data.notes.find((n)=>{ return !!n.noteID && n.noteID ==  this.props.id});
+    const note = this.props.notes.find((n)=>{ return !!n.noteID && n.noteID ==  this.props.id});
 
     this.state = {
       title: note ? note.title : "",

@@ -18,26 +18,26 @@ import store from '../store';
 import styles from '../styles/homeS';
 
 
-
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
     this.state = {
-      notes: store.getState().data.notes
+      notes: store.getState().notes
     };
 
     store.subscribe(() => {
       this.setState({
-        notes: store.getState().data.notes
+        notes: store.getState().notes
       })
     });
   }
 
   render() {
-
+    console.log('store : ',store.getState());
+    console.log('propsoviii', this.props);
     const window = Dimensions.get('window');
+    console.log(this.state.notes);
     const note = this.ds.cloneWithRows(this.state.notes);
     const rowCount = note.getRowCount();
     const getTheRightNote = (id) => {
@@ -47,13 +47,13 @@ export default class Home extends Component {
     const deleteNote = (note) => {
       this.props.deleteNote(note);
         this.setState({
-          notes: store.getState().data.notes
+          notes: store.getState().notes
       })
     };
     const pinNote = (note) => {
       this.props.pinNote(note);
       this.setState({
-        notes: store.getState().data.notes
+        notes: store.getState().notes
       })
     };
 
@@ -79,7 +79,7 @@ export default class Home extends Component {
           <TouchableOpacity onPress={getTheRightNote.bind(this, note.noteID, note)} >
             <View style={styles.viewContainer}>
               <View style={styles.textCont}><Text style={styles.noteTitle}>{note.title}</Text>
-                <Text style={styles.noteDesc}>{note.description}</Text>
+                <Text style={styles.noteDesc} numberOfLines={2} >{note.description}</Text>
               </View>
 
             </View>
